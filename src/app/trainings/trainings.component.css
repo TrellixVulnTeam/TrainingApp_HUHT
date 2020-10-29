@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+  text-decoration: none;
+}
+ul{
+  list-style-type: none;
+}
+li{
+  display: inline;
+}
+h1{
+  text-align: center;
+}
+.trainings{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-gap: 1em;
+}
+
+.training{
+  border: 2px solid  #DCDCDC;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.training:hover{
+  background: #D4D4D4;
+  border: #D4D4D4;
+}
+
+.trainings_exercises{
+  border-top: 2px solid  #DCDCDC;
+}
+
+.create_training{
+  display: block;
+  text-align: center;
+}
+
+.create_training{
+  color: #000;
+}
+.create_training:hover{
+  color: #000;  
+}

@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  h1{
+    text-align: center;
+  }
+  .seperate{
+    display: flex;
+    justify-content: space-between;
+  }
+  .training_states{
+    width: 50%;
+    border-right: 2px solid  #000;
+  }
+  .nameInput{
+    border: none;
+    flex-grow: 1;
+    vertical-align: bottom;
+    font-size: 1.5em;
+    outline: none;
+  }
+  .nameInput:focus{
+    border: none;
+    border-bottom: 1px solid rgb(97, 97, 97);
+  }
+  .start_training{
+    background: #4ce0a5;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .training{
+    min-width: 50%;
+  }
+  
+  .info{
+    min-width: 50%;
+    margin-left: 0.2em;
+  }
+  @media only screen and (max-width: 600px) {
+    .seperate{
+      flex-flow: column wrap;
+    }
+    .training_states{
+      width: 100%;
+      border-right: 2px solid rgba(0,0,0,0);
+    }
+    .training{
+      width: 100%;
+    }
+  
+    .info{
+      width: 100%;
+    }
+  }
+    

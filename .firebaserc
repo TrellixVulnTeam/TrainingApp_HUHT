@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "training-app-eba95"
+  },
+  "targets": {
+    "training-app-eba95": {
+      "hosting": {
+        "TrainingApp": [
+          "training-app-eba95"
+        ]
+      }
+    }
+  }
+}

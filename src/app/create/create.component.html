@@ -1,0 +1,21 @@
+<a routerLink="/" class="return">Return</a>
+<h1>Create a training</h1>
+
+<a routerLink="/" class="return">Return</a>
+
+<div class="training_states">
+    <h2>Name: {{ training.name }}</h2>
+    <button [routerLink]="['train']">Start now!</button>
+    <div class="modify">
+        <input  placeholder="name"/>
+    </div>
+</div>
+<div class="training">
+    <h2 *ngIf = "training.round == 1">One round</h2>
+    <h2 *ngIf = "training.round != 1">{{ training.round }} rounds</h2>
+    <ul class="training_exercises">
+        <li *ngFor="let exercise of training.ex; let i = index" class="exercises {{ training.ex[i].id }}">
+            <p>{{ training.reps[i] }} {{ training.ex[i].name }}</p>
+        </li>
+    </ul>
+</div>
