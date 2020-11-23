@@ -4,13 +4,13 @@
   <div class="training" *ngFor="let training of trainings;let i = index" routerLink="Trainings/{{ training.id }}">
     <div class="basic_info">
       <h2 class="training_name">{{ training.name }}</h2>
-      <p class="training_durations">1.5 hour</p>
+      <!-- <p class="training_durations">{{ training. }}</p> -->
       <p class="training_level">**</p>
     </div>
     <ul class="trainings_exercises">
-      <li class="{{ exercise_id }}" *ngFor="let ex of ex[i]">{{ ex.name }}, </li>
+      <!-- <li class="{{ exercise_id }}" *ngFor="let ex of ex[i]">{{ ex.name }}, </li> -->
     </ul>
   </div>
 </div>
 
-<a routerLink="/Trainings/{{ trainings.slice(-1)[0].id+1 }}" class="create_training">Create new training</a>
+<a routerLink="/Create" class="create_training">Create new training</a>

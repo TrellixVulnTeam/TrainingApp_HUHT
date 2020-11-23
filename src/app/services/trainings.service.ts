@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 import { Router } from '@angular/router';
 import { ExerciseService } from '../services/exercise.service';
 import { Training } from '../models';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase';
 import { generate } from 'rxjs';
 
 @Injectable({
@@ -11,38 +10,78 @@ import { generate } from 'rxjs';
 })
 export class TrainingsService {
 
-  Trainings:Training[];
+  Trainings:Training[] = [];
+  TrainingsSize:number = 0;
 
-  constructor(private route: Router, private exService:ExerciseService, firestore: AngularFirestore) {
-    let tr = firestore.collection('Trainings').valueChanges();
-    tr.subscribe(training => this.Trainings = training);
+  constructor(private route: Router, private exService:ExerciseService, private firestore: AngularFirestore) {
+    firestore.collection("Trainings").get()
+    .subscribe((sn) => {
+      sn.forEach((doc: any) => {
+        this.Trainings[this.Trainings.length] = new Training(doc.data().name, doc.id, doc.data().rounds, doc.data().sets, doc.data().created_by);
+      });
+    });
   }
-
 
   getTrainings():Training[]{
     return this.Trainings;
   }
-  
+
   getTraining(){
-    const tr = this.getTrainings();
-    if(typeof tr[(this.route.url.split('/').slice(-1)[0])] === 'number'){
-      return tr[(this.route.url.split('/')[1])];
+    if(this.route.url.split('/').slice(-1).length == 1){
+      return this.searchById(this.route.url.split('/').slice(-1)[0]);
     }
-    return tr[(this.route.url.split('/')[2])];
   }
-  
+
+  searchById(id:string){
+    for (let i = 0; i <= this.Trainings.length; i++) {
+      try{
+        if(this.Trainings[i].id == id){
+          return this.Trainings[i];
+        }
+      }catch(e){
+        console.log("Training wasn't found");
+      }
+    }
+  }
+
   addTraining(){
-    // let training = new training(postsRef.push().newPostRef.key);
-    firestore().collection('Trainings').add({
-      
+    let nameId:number = 0;
+    let found:boolean = false;
+
+    while(nameId < this.TrainingsSize){
+      for (let i = 0; i < this.TrainingsSize; i++) {
+        if(this.Trainings[i].name == "New training_"+nameId){
+          found = true;
+        }
+      }
+
+      if(found){
+        break;
+      }else{
+        found = false;
+        nameId++;
+      }
+    }
+    console.log(this.TrainingsSize);
+    this.firestore.collection('Trainings').add({
+      name: "New training_"+(this.Trainings.length+1),
+      rounds: 1,
+      sets:[
+        {
+          1:1,
+          2:{
+              exercise: {
+                  name: 'Push ups',
+                  id: 1,
+                  level: 2
+              },
+              reps: 1
+          },
+        },
+      ],
+      created_by: false
     });
+    
+    console.log("Training was created");
   }
 }
-/*
-name:string;
-id:number;
-rounds:number;
-exercisesWithReps:exerciseWithNum[];
-sets:any[][];
-created_by:boolean;
-*/ 

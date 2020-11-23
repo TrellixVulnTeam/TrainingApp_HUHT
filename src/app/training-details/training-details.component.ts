@@ -16,44 +16,47 @@ export class TrainingDetailsComponent implements OnInit {
 
   ex = this.training.getExercises(0);
   
-  UptadeName(newName:string){
-    if(this.validate(newName)){
-      this.training.name = newName;
-    }
-  }
+  // UptadeName(newName:string){
+  //   if(this.validate(newName)){
+  //     this.training.name = newName;
+  //   }
+  // }
 
-  validate(msg:string){
-    if(msg != ""){
-      let found:boolean = false;
+  // validate(msg:string){
+  //   if(msg != ""){
+  //     let found:boolean = false;
 
-      for (let i = 0; i < this.trainings.length; i++) {
-        if(this.training.name != this.trainings[i].name){
-          found = true;
-        }
-      }
-      if(!found){
-        return true;
-      }
-      return false;
-    }
-    return false;
-  }
+  //     for (let i = 0; i < this.trainings.length; i++) {
+  //       if(this.training.name != this.trainings[i].name){
+  //         found = true;
+  //       }
+  //     }
+  //     if(!found){
+  //       return true;
+  //     }
+  //     return false;
+  //   }
+  //   return false;
+  // }
 
 
 //   [
-//     [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],    -
+//     [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
 //     [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
 //     [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
 //  ]
+// get to every line - get to the exs - get to reps
   constructor(private trService:TrainingsService, private exService:ExerciseService) {
-    for (let i = 0; i < this.training.sets.length; i++) {
-      for (let j = 0; j < this.training.sets[i][0]; j++) {
-        console.log(this.training.sets[i][0]);
-        console.log(this.training.sets[i][1].reps);
-      }
-    }
+    // for (let i = 0; i < this.training.sets.length; i++) {
+    //   for (let j = 0; j < this.training.sets[i][0]; j++) {
+    //     console.log(this.training.sets[i][0]);
+    //     console.log(this.training.sets[i][1].reps);
+    //   }
+    // }
   }
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
 }

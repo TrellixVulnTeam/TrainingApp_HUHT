@@ -4,79 +4,74 @@ export interface Exercise {
     id: number;
     level: number;
 }
-interface exerciseWithNum {
-    exercise: Exercise;
-    reps:number;
-}
 
 // Classes:
 export class Training {
     name:string;
-    id:number;
+    id:string;
     rounds:number;
-    exercisesWithReps:exerciseWithNum[];
-    sets:any[][];
+    sets:any[];
     created_by:boolean;
 
-    constructor(id:number) {
+    constructor(name:string, id:string, rounds:number, sets:any[], c:boolean) {
+        this.name = name;
+        this.id = id;
+        this.rounds = rounds;
+        this.sets = sets;
+        this.created_by = c;
+    }
+    
+    createNewTraining(id:string) {
         this.name = "New training";
         this.id = id;
         this.rounds = 1;
-        this.exercisesWithReps = [{
-            exercise: {
-                name: 'Push ups',
-                id: 1,
-                level: 2
-              },
-            reps: 1
-        }];
-        this.sets = [[1, {
-            exercise: {
-                name: 'Push ups',
-                id: 1,
-                level: 2
-              },
-            reps: 1
-        }, ]];
+        this.sets = [
+            {
+                1:1, 
+                2:{
+                    exercise: {
+                        name: 'Push ups',
+                        id: 1,
+                        level: 2
+                    },
+                    reps: 1
+                },
+            },
+        ];
         this.created_by = false;
     }
 
     getExercises(num:number){
-        let array:Exercise[] = [];
-        let index:number = 0;
-        if(num > 0 && num <= this.exercisesWithReps.length){
-            array[0] = this.exercisesWithReps[0].exercise;
-            let found:boolean = false;
-            for(let i=0;i<num;i++){
-                for(let j=0;j<index;j++){
-                    if(array[j] == this.exercisesWithReps[i].exercise){
-                        found = true;
-                    }
-                }
-                if(!found){
-                    array[index] = this.exercisesWithReps[i].exercise;
-                }
-                index++;
-            }
-        }else{
-            array[0] = this.exercisesWithReps[0].exercise;
-            let found:boolean = false;
-            for(let i=0;i<this.exercisesWithReps.length;i++){
-                for(let j=0;j<index;j++){
-                    if(array[j] == this.exercisesWithReps[i].exercise){
-                        found = true;
-                    }
-                }
-                if(!found){
-                    array[index] = this.exercisesWithReps[i].exercise;
-                }
-                index++;
+        let ex:Exercise[] = [];
+        let done:boolean = true;
+
+        console.log(this)
+        this.sets.forEach(element => {
+            console.log(element);
+        });
+        for (let l = 0; l < this.sets.length; l++) {
+            for (let set = 1; set <= this.sets[l].length; set++) {
+                ex += this.sets[l].set.exercise;
             }
         }
+        // if(num > 0){
+        //     while(done){
+        //         for (let x = 0; x < this.sets.length; x++) {
+        //             this.sets[x].i
+        //         }
+        //     }
+        // }else{
+            
+        // }
 
-        return array;
+        return ex;
     }
-
+//   [
+//     [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
+//     [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
+//     [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
+//  ]
+// get to every line - get to the exs - get to reps
     getDuration(){
         let dr:number = 0;
         dr += 2 * this.getExercises(0).length + 1 * this.getExercises(0).length;
@@ -89,25 +84,18 @@ export class Training {
     }
 
     getLevel(){
-        let avg:number = 0;
-        let ex:Exercise[] = this.getExercises(0);
-        for (let i = 0; i < ex.length; i++) {
-            avg += ex[i].level;
-        }
-        return avg/ex.length;
+        // let avg:number = 0;
+        // let ex:Exercise[] = this.getExercises(0);
+        // for (let i = 1; i < ex.length; i++) {
+        //     avg += ex.i.level;
+        // }
+        // return avg/ex.length;
     }
-
     getLevelString(){
-        let stars:string = "";
-        for (let i = 0; i < this.getLevel(); i++) {
-            stars += "⭐";
-        }
-        return stars;
+        // let stars:string = "";
+        // for (let i = 0; i < this.getLevel(); i++) {
+        //     stars += "⭐";
+        // }
+        // return stars;
     }
-    // createSets(set:number[], ex:exerciseWithNum[]){
-        
-    // }
-    // create(reps:number[], ex:Exercise[]){
-        
-    // }
 }

@@ -14,6 +14,7 @@ export class TrainingsComponent implements OnInit {
   ex = [];
   
   constructor(private trService:TrainingsService) {}
+  
   ngOnInit(): void {
     for (let i = 0; i < this.trainings.length; i++) {
       this.ex[i] = this.trainings[i].getExercises(3)

@@ -1,8 +1,8 @@
 <a routerLink="/" class="return">Return</a>
 
-<div class="changeName true" *ngIf="training.created_by" >
+<!-- <div class="changeName true" *ngIf="training.created_by" >
     <input class="nameInput" placeholder="{{ training.name }}" (change)="UptadeName(name.value)" #name>
-</div>
+</div> -->
 <div class="changeName false" *ngIf="!training.created_by" >
     <h1 class="nameInput">{{ training.name }}</h1>
 </div>
@@ -12,34 +12,25 @@
         <p>Duration: {{ training.getDuration() }}</p>
         <p>Level: {{ training.getLevelString() }}</p>
         <p>Exercises: </p>
-        <ul class="trainings_exercises">
+        <!-- <ul class="trainings_exercises">
             <li class="{{ exercise_id }}" *ngFor="let e of ex">{{ e.name }}</li>
-        </ul>
+        </ul> -->
         <button class="start_training" [routerLink]="['train']">Start</button>
     </div>
     <div class="info">
         <h2 *ngIf = "training.rounds == 1">One round</h2>
         <h2 *ngIf = "training.rounds != 1">{{ training.rounds }} rounds</h2>
-        <ul class="training_exercises">
-            <!-- <li *ngFor="let exercise of training.ex; let i = index" class="exercises {{ training.ex[i].id }}">
+        <!-- <ul class="training_exercises">
+            <li *ngFor="let exercise of training.ex; let i = index" class="exercises {{ training.ex[i].id }}">
                 <p>{{ training.reps[i] }} {{ training.ex[i].name }}</p>
-            </li> -->
-
-
-            <!-- 
-            [
-                [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
-                [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
-                [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
-            ]
-             -->
-            <!-- <li *ngFor="let set of training.sets">
+            </li>
+            <li *ngFor="let set of training.sets">
                 <ul>
                     <li *ngFor="let ex of set[1]">
                         <p>{{ ex[0] }}</p>
                     </li>
                 </ul>
-            </li> -->
-        </ul>
+            </li>
+        </ul> -->
     </div>
 </div>
