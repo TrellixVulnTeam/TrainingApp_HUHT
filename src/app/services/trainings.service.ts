@@ -1,33 +1,33 @@
-import { Injectable, ɵConsole } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ExerciseService } from '../services/exercise.service';
 import { Training } from '../models';
+import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { generate } from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })
 export class TrainingsService {
 
   Trainings:Training[] = [];
-  TrainingsSize:number = 0;
-
-  constructor(private route: Router, private exService:ExerciseService, private firestore: AngularFirestore) {
-    firestore.collection("Trainings").get()
-    .subscribe((sn) => {
-      sn.forEach((doc: any) => {
-        this.Trainings[this.Trainings.length] = new Training(doc.data().name, doc.id, doc.data().rounds, doc.data().sets, doc.data().created_by);
-      });
-    });
-  }
 
   getTrainings():Training[]{
     return this.Trainings;
   }
 
+  updateTrainings():string{
+    this.firestore.collection("Trainings").ref
+    .onSnapshot((doc) => {
+      doc.forEach(function(data) {
+        this.Trainings[this.Trainings.length+1] = new Training(data.data().name, data.id, data.data().roungs, data.data().sets, data.data().created_by);
+      });
+    });
+    console.log(this.Trainings)
+    return "Done!";
+  }
+
   getTraining(){
-    if(this.route.url.split('/').slice(-1).length == 1){
+    if(this.route.url.split('/').length == 2){
       return this.searchById(this.route.url.split('/').slice(-1)[0]);
     }
   }
@@ -48,8 +48,8 @@ export class TrainingsService {
     let nameId:number = 0;
     let found:boolean = false;
 
-    while(nameId < this.TrainingsSize){
-      for (let i = 0; i < this.TrainingsSize; i++) {
+    while(nameId < this.Trainings.length){
+      for (let i = 0; i < this.Trainings.length; i++) {
         if(this.Trainings[i].name == "New training_"+nameId){
           found = true;
         }
@@ -62,9 +62,9 @@ export class TrainingsService {
         nameId++;
       }
     }
-    console.log(this.TrainingsSize);
+
     this.firestore.collection('Trainings').add({
-      name: "New training_"+(this.Trainings.length+1),
+      name: "New training_"+(this.Trainings.length),
       rounds: 1,
       sets:[
         {
@@ -72,7 +72,7 @@ export class TrainingsService {
           2:{
               exercise: {
                   name: 'Push ups',
-                  id: 1,
+                  id: 'Gk5kIucibzb3scld1IgB',
                   level: 2
               },
               reps: 1
@@ -84,4 +84,9 @@ export class TrainingsService {
     
     console.log("Training was created");
   }
+
+  constructor(private route: Router, private exService:ExerciseService, private firestore: AngularFirestore) {
+    console.log(this.Trainings)
+  }
+
 }

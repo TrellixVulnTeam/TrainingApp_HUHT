@@ -45,15 +45,10 @@ export class Training {
         let ex:Exercise[] = [];
         let done:boolean = true;
 
-        console.log(this)
-        this.sets.forEach(element => {
-            console.log(element);
+        this.sets[1].forEach(e => {
+            console.log(e);
+            ex[ex.length] = e;
         });
-        for (let l = 0; l < this.sets.length; l++) {
-            for (let set = 1; set <= this.sets[l].length; set++) {
-                ex += this.sets[l].set.exercise;
-            }
-        }
         // if(num > 0){
         //     while(done){
         //         for (let x = 0; x < this.sets.length; x++) {
@@ -71,6 +66,16 @@ export class Training {
 //     [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
 //     [_num_, [{_reps_, ex1},{_reps_, ex2},{_reps_, ex3}]],
 //  ]
+// 
+// [
+//      _num_,
+//      [
+//         {_reps_, ex1}
+//        ,{_reps_, ex2}
+//        ,{_reps_, ex3}
+//      ]
+// ]
+// set[1].forEach
 // get to every line - get to the exs - get to reps
     getDuration(){
         let dr:number = 0;

@@ -5,29 +5,22 @@ import { Exercise } from '../models';
   providedIn: 'root'
 })
 export class ExerciseService {
-  getExercises(): Exercise[] {
-    const exercises:Exercise[] = [
-      {
-        name: 'Push ups',
-        id: 1,
-        level: 2
-      },
-      {
-        name: 'Pull ups',
-        id: 2,
-        level: 4
-      },
-      {
-        name: 'squats',
-        id: 3,
-        level: 2
-      }
-    ];
 
-    return exercises;
+  Exercises:Exercise[] = [];
+
+  getExercises(): Exercise[] {
+    return this.Exercises;
   }
 
-  exerciseId = this.getExercises();
-
-  constructor() { }
+  addExercise(name:string, level:number){
+    // this.firestore.collection('Exercises').add({
+    //     name: name,
+    //     level: level
+    //   });
+    console.log("Exercise was created");
+  }
+  
+  constructor() {
+    
+  }
 }

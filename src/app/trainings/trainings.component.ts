@@ -10,15 +10,18 @@ import { Exercise } from '../models';
 })
 export class TrainingsComponent implements OnInit {
 
-  trainings:Training[] = this.trService.getTrainings();
-  ex = [];
   
-  constructor(private trService:TrainingsService) {}
+  addTraining(){
+    this.trService.addTraining();
+  }
+
+  constructor(public trService:TrainingsService) {
+    trService.updateTrainings;
+    console.log("sent")
+  }
   
   ngOnInit(): void {
-    for (let i = 0; i < this.trainings.length; i++) {
-      this.ex[i] = this.trainings[i].getExercises(3)
-    }
+    
   }
 
 }

@@ -1,10 +1,10 @@
 <h1>Trainings</h1>
 
 <div class="trainings">
-  <div class="training" *ngFor="let training of trainings;let i = index" routerLink="Trainings/{{ training.id }}">
+  <div class="training" *ngFor="let training of trService.Trainings;let i = index" routerLink="Trainings/{{ training.id }}">
     <div class="basic_info">
       <h2 class="training_name">{{ training.name }}</h2>
-      <!-- <p class="training_durations">{{ training. }}</p> -->
+      <!-- <p class="training_durations">{{ training.getDuration }}</p> -->
       <p class="training_level">**</p>
     </div>
     <ul class="trainings_exercises">
@@ -13,4 +13,4 @@
   </div>
 </div>
 
-<a routerLink="/Create" class="create_training">Create new training</a>
+<a class="create_training"  (click)="addTraining()">Create new training</a>
