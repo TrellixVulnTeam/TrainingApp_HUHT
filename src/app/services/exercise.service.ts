@@ -8,19 +8,18 @@ export class ExerciseService {
 
   Exercises:Exercise[] = [];
 
-  getExercises(): Exercise[] {
+  async getExercises(): Promise<Exercise[]> {
+    fetch(`https://my-json-server.typicode.com/druber07/PullApp_Backend/Exercises`)
+    .then(response => response.json())
+    .then(data =>{ 
+      this.Exercises[this.Exercises.length] = data
+    })
+
     return this.Exercises;
   }
 
-  addExercise(name:string, level:number){
-    // this.firestore.collection('Exercises').add({
-    //     name: name,
-    //     level: level
-    //   });
-    console.log("Exercise was created");
-  }
-  
+
   constructor() {
-    
+    this.getExercises();
   }
 }

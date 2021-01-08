@@ -27,8 +27,8 @@ export class Training {
         this.rounds = 1;
         this.sets = [
             {
-                1:1, 
-                2:{
+                set:1, 
+                Ex_info:{
                     exercise: {
                         name: 'Push ups',
                         id: 1,

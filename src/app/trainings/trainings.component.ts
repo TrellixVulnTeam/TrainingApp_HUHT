@@ -10,15 +10,8 @@ import { Exercise } from '../models';
 })
 export class TrainingsComponent implements OnInit {
 
-  
-  addTraining(){
-    this.trService.addTraining();
-  }
 
-  constructor(public trService:TrainingsService) {
-    trService.updateTrainings;
-    console.log("sent")
-  }
+  constructor(public trService:TrainingsService) {}
   
   ngOnInit(): void {
     

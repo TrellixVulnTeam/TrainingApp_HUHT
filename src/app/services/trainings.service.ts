@@ -11,19 +11,14 @@ export class TrainingsService {
 
   Trainings:Training[] = [];
 
-  getTrainings():Training[]{
-    return this.Trainings;
-  }
+  async getTrainings(): Promise<Training[]> {
+    fetch(`https://my-json-server.typicode.com/druber07/PullApp_Backend/Trainings`)
+    .then(response => response.json())
+    .then(data =>{ 
+      this.Trainings[this.Trainings.length] = new Training(data[this.Trainings.length].name, data[this.Trainings.length].id, data[this.Trainings.length].rounds, data[this.Trainings.length].sets, data[this.Trainings.length].created_by);
+    })
 
-  updateTrainings():string{
-    this.firestore.collection("Trainings").ref
-    .onSnapshot((doc) => {
-      doc.forEach(function(data) {
-        this.Trainings[this.Trainings.length+1] = new Training(data.data().name, data.id, data.data().roungs, data.data().sets, data.data().created_by);
-      });
-    });
-    console.log(this.Trainings)
-    return "Done!";
+    return this.Trainings;
   }
 
   getTraining(){
@@ -45,48 +40,48 @@ export class TrainingsService {
   }
 
   addTraining(){
-    let nameId:number = 0;
-    let found:boolean = false;
+    // let nameId:number = 0;
+    // let found:boolean = false;
 
-    while(nameId < this.Trainings.length){
-      for (let i = 0; i < this.Trainings.length; i++) {
-        if(this.Trainings[i].name == "New training_"+nameId){
-          found = true;
-        }
-      }
+    // while(nameId < this.Trainings.length){
+    //   for (let i = 0; i < this.Trainings.length; i++) {
+    //     if(this.Trainings[i].name == "New training_"+nameId){
+    //       found = true;
+    //     }
+    //   }
 
-      if(found){
-        break;
-      }else{
-        found = false;
-        nameId++;
-      }
-    }
+    //   if(found){
+    //     break;
+    //   }else{
+    //     found = false;
+    //     nameId++;
+    //   }
+    // }
 
-    this.firestore.collection('Trainings').add({
-      name: "New training_"+(this.Trainings.length),
-      rounds: 1,
-      sets:[
-        {
-          1:1,
-          2:{
-              exercise: {
-                  name: 'Push ups',
-                  id: 'Gk5kIucibzb3scld1IgB',
-                  level: 2
-              },
-              reps: 1
-          },
-        },
-      ],
-      created_by: false
-    });
+    // this.firestore.collection('Trainings').add({
+    //   name: "New training_"+(this.Trainings.length),
+    //   rounds: 1,
+    //   sets:[
+    //     {
+    //       1:1,
+    //       2:{
+    //           exercise: {
+    //               name: 'Push ups',
+    //               id: 'Gk5kIucibzb3scld1IgB',
+    //               level: 2
+    //           },
+    //           reps: 1
+    //       },
+    //     },
+    //   ],
+    //   created_by: false
+    // });
     
-    console.log("Training was created");
+    // console.log("Training was created");
   }
 
   constructor(private route: Router, private exService:ExerciseService, private firestore: AngularFirestore) {
-    console.log(this.Trainings)
+    this.getTrainings();
   }
 
 }
