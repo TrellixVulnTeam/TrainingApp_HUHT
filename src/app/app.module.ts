@@ -1,32 +1,46 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
-
-import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-
 import { AppComponent } from './app.component';
 import { TrainingsComponent } from './trainings/trainings.component';
-import { TrainingDetailsComponent } from './training-details/training-details.component';
-import { TrainComponent } from './train/train.component';
-import { ExercisesComponent } from './exercises/exercises.component';
-import { TestComponent } from './test/test.component';
+import { TrainingComponent } from './training/training.component';
 
+import { environment } from '../environments/environment';
+import firebase from 'firebase/app';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { TrainComponent } from './train/train.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { ExercisesComponent } from './exercises/exercises.component';
+
+firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
     TrainingsComponent,
-    TrainingDetailsComponent,
+    TrainingComponent,
     TrainComponent,
     ExercisesComponent,
-    TestComponent
+  ],
+  entryComponents:[
+    ExercisesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule,
+    DragDropModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

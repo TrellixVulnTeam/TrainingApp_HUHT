@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ExerciseService } from '../services/exercise.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-exercises',
@@ -8,9 +8,7 @@ import { ExerciseService } from '../services/exercise.service';
 })
 export class ExercisesComponent implements OnInit {
 
-  exercises = this.exService.getExercises();
-
-  constructor(private exService:ExerciseService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

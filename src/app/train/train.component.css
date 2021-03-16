@@ -1,0 +1,42 @@
+body{
+    position: relative;
+}
+button{
+    padding: 10px 20px;
+    margin: 4px 2px;
+    font-size: 16px;
+    
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+
+    background-color: white;
+    color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+p{
+    font-size: 24px;
+    font-weight: 600;
+}
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.wait{
+    display: flex;
+    flex-direction: column;
+}
+.timerAdd{
+    padding: 4px 14px 6px 14px;
+    margin: 0px 0px;
+    border-radius: 50%;
+}
+.exerciseNow{
+    display: flex;
+    flex-direction: column;
+}

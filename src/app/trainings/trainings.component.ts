@@ -1,7 +1,8 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ExercisesComponent } from '../exercises/exercises.component';
 import { TrainingsService } from '../services/trainings.service';
-import { Training } from '../models';
-import { Exercise } from '../models';
 
 @Component({
   selector: 'app-trainings',
@@ -10,11 +11,10 @@ import { Exercise } from '../models';
 })
 export class TrainingsComponent implements OnInit {
 
+  constructor(public trService:TrainingsService, public dialog: MatDialog) {
+  }
 
-  constructor(public trService:TrainingsService) {}
-  
   ngOnInit(): void {
     
   }
-
 }

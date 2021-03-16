@@ -1,19 +1,15 @@
 <h1>Trainings</h1>
 
 <div class="trainings">
-  <div class="training" *ngFor="let training of trService.Trainings;let i = index" routerLink="Trainings/{{ training.id }}">
+  <div class="training" *ngFor="let training of trService.Trainings;let i = index" routerLink="trainings/{{ training.id }}">
     <div class="basic_info">
       <h2 class="training_name">{{ training.name }}</h2>
-      <p class="training_durations">{{ training.getDuration }}</p>
-      <p class="training_level">**</p>
+      <!-- <p class="training_durations">{{ training.getDuration }}</p> -->
+      <!-- <p class="training_level">**</p> -->
     </div>
-    <ul class="trainings_exercises">
+    <!-- <ul class="trainings_exercises">
       <li class="{{ exercise_id }}" *ngFor="let ex of ex[i]">{{ ex.name }}, </li>
-    </ul>
+    </ul> -->
   </div>
 </div>
-
-<!-- <a class="create_training"  (click)="addTraining()">Create new training</a> 
-  post error 500
-
--->
+<!-- <a class="create_training"  (click)="trService.addTraining()">Create new training</a>  -->

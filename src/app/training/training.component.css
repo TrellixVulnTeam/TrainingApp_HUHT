@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+button{
+  text-decoration:none;
+}
+
+.seperate {
+  display: flex;
+  justify-content: space-between;
+}
+
+.training_states {
+  width: 50%;
+  border-right: 2px solid #000;
+}
+
+.nameInput {
+  border: none;
+  flex-grow: 1;
+  vertical-align: bottom;
+  font-size: 1.5em;
+  outline: none;
+}
+
+.nameInput:focus {
+  border: none;
+  border-bottom: 1px solid rgb(97, 97, 97);
+}
+
+.start_training {
+  background: #4ce0a5;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration:none;
+  cursor: pointer;
+}
+
+.training {
+  min-width: 50%;
+}
+
+.info {
+  min-width: 50%;
+  margin-left: 0.5em;
+}
+
+.sets{
+  border: solid 1px #ccc;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+.set {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+}
+.rounds_main{
+  padding-bottom: 0.6em;
+}
+.rounds {
+  text-align: center;
+  margin-right: 0.5em;
+  cursor: all-scroll; 
+}
+.exs {
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+.ex{
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 2px;
+  margin: 0.4em;
+  padding: 0.2em;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: white;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media only screen and (max-width: 600px) {
+  .seperate {
+    flex-flow: column wrap;
+  }
+
+  .training_states {
+    width: 100%;
+    border-right: 2px solid rgba(0, 0, 0, 0);
+  }
+
+  .training {
+    width: 100%;
+  }
+
+  .info {
+    width: 100%;
+  }
+}

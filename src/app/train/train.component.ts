@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Training } from '../models';
 import { TrainingsService } from '../services/trainings.service';
-import { ExerciseService } from '../services/exercise.service';
-import { Training, Exercise } from '../models';
 
 @Component({
   selector: 'app-train',
@@ -9,14 +8,11 @@ import { Training, Exercise } from '../models';
   styleUrls: ['./train.component.css']
 })
 export class TrainComponent implements OnInit {
-
-  
-  //training = this.trService.getTraining();
-  exercises = this.exService.getExercises();
-
-  ifRound:number = 0;
+  training:Training;
+  ex = [];
   shownEx:number = 0;
   timeLeft:number = 5;
+  done:boolean = true; 
   interval;
 
   startTimer() {
@@ -30,29 +26,32 @@ export class TrainComponent implements OnInit {
   skipTimer(){
     this.timeLeft = 0;
   }
+
   addTime(time){
     this.timeLeft = time+5;
     clearInterval(this.interval);
     this.startTimer()
   }
+
   exerciseDone(){
-    this.shownEx++;
-    this.timeLeft = 5;
-    clearInterval(this.interval);
-    this.startTimer()
+    if(this.shownEx < this.ex.length-1){
+      this.shownEx++;
+      this.timeLeft = 5;
+      clearInterval(this.interval);
+      this.startTimer()
+    }else{
+      this.done = false;
+    }
   }
-  // trainingDone(){
-  //   if(this.shownEx == this.training.exercise.length){
-  //     return false
-  //   }
-  //   console.log(this.ifRound+ " == " +this.training.round)
-  //   return true
-  // }
+
   pauseTimer() {
     clearInterval(this.interval);
   }
 
-  constructor(private trService:TrainingsService, private exService:ExerciseService) { }
+  constructor(private trService:TrainingsService) {
+    this.training = trService.searchById(trService.getId());
+    this.ex = this.training.getExercises();
+  }
 
   ngOnInit(): void {
     this.startTimer();

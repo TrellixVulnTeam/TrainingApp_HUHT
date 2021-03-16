@@ -8,4 +8,9 @@ import { TrainingsService } from './services/trainings.service';
 })
 export class AppComponent {
   title = 'TrainingApp';
+  
+  constructor(public trService:TrainingsService) {
+    trService.Trainings = [];
+    trService.getData();
+  }
 }
