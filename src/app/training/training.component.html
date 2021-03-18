@@ -20,10 +20,16 @@
             <div cdkDrag class="training_exercises" *ngFor="let round of this.training.sets;index as i"  cdkDragLockAxis="y" cdkDragBoundary=".sets">
                 <p class="rounds">{{ round.reps }}</p>
                 <il cdkDropList class="exs" (cdkDropListDropped)="drop_ex($event, i)">
-                    <ul cdkDrag class="ex" *ngFor="let ex of round.ex" cdkDragBoundary=".exs" cdkDragLockAxis="y">{{ ex.reps }} {{ ex.name }}</ul>
+                    <ul cdkDrag class="ex" *ngFor="let ex of round.ex" cdkDragBoundary=".exs" cdkDragLockAxis="y">
+                        <mat-form-field appearance="fill">
+                            <input matInput type="number" class="example-left-align" placeholder="{{ ex.reps }}">
+                            <p>{{ ex.name }}</p>
+                        </mat-form-field>
+                    </ul>
                 </il>
-                    <button class="ex" style="width: 100%;text-align: center;" (click)="openDialog()">+</button>
+                <button class="ex" style="width: 100%;text-align: center;" (click)="openDialog()">+</button>
             </div>
         </div>
+        <button class="save" (click) = "save()">Save</button>
     </div>
 </div>

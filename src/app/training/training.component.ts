@@ -20,18 +20,24 @@ export class TrainingComponent implements OnInit {
   }
   drop_rounds(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.training.sets, event.previousIndex, event.currentIndex);
+  }
+
+  update(){
+    
+  }
+
+  save(){
     this.trService.SetUpdate(this.training.id, this.training.sets);
   }
-  
-  openDialog(){
 
+  openDialog(){
     const dialogConfig = new MatDialogConfig();
     this.dialog.open(ExercisesComponent, dialogConfig);
   }
 
   constructor(private trService:TrainingsService, public dialog:MatDialog) {
+    // this.training = new Training("", "", 0, [], false);
     this.training = trService.searchById(trService.getId());
-
   }
   
   ngOnInit(): void {

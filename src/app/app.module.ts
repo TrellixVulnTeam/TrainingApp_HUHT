@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TrainingsComponent } from './trainings/trainings.component';
 import { TrainingComponent } from './training/training.component';
+import { ExercisesComponent } from './exercises/exercises.component';
 
 import { environment } from '../environments/environment';
 import firebase from 'firebase/app';
@@ -16,8 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
-import { ExercisesComponent } from './exercises/exercises.component';
 
 firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -40,7 +41,8 @@ firebase.initializeApp(environment.firebase);
     DragDropModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
